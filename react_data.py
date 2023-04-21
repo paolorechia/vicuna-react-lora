@@ -211,4 +211,65 @@ Observation: "Chuck Norris can hammer nails with a screwdriver."
 Thought:I now know the final answer
 Final Answer: "Chuck Norris can hammer nails with a screwdriver."
 """},
+    {"instruction": """
+1. Create 5 random cat jokes. Each joke should be self-contained into a string. If you get repeated errors, ask for help from human.
+2. Write the jokes to a file.
+3. Output the file contents to double check it's not empty.
+4. Ask the human if the results are good. 
+5. Finished!
+""",
+    "output": """
+I should create 5 random cat jokes
+Action: Python REPL
+Action Input: 
+jokes = []
+for i in range(5):
+jokes.append(random.choice(['Why did the cat go to the vet?', 'Why did the cat cross the road?', 'Why did the cat fall in love with a dog?']))
+
+Observation: expected an indented block after 'for' statement on line 2 (<string>, line 3)
+Thought:I need to indent the block after the for statement
+Action: Python REPL
+Action Input: 
+jokes = []
+for i in range(5):
+    jokes.append(random.choice(['Why did the cat go to the vet?', 'Why did the cat cross the road?', 'Why did the cat fall in love with a dog?']))
+
+Observation: 
+
+Thought:I should check if the jokes are stored in the list
+Action: Python REPL
+Action Input: 
+print(jokes)
+
+Observation: ['Why did the cat go to the vet?', 'Why did the cat cross the road?', 'Why did the cat fall in love with a dog?', Why did the cat cross the road?', Why did the cat cross the road?']
+
+
+Thought:I have a list of jokes, now I should write them to a file
+Action: Python REPL
+Action Input: 
+with open('jokes.txt', 'w') as f:
+    f.write(' '.join(jokes))
+
+
+Observation: 
+
+Thought: I should check if the file was written correctly
+Action: Python REPL
+Action Input: 
+with open('jokes.txt', 'r') as f:
+    print(f.read())
+
+Observation: 'Why did the cat go to the vet? Why did the cat cross the road? Why did the cat fall in love with a dog? Why did the cat cross the road? Why did the cat cross the road?'
+
+Thought: The file was written correctly, I should ask the Human for feedback.
+Action: MultiLineHuman
+Action Input: "Human, please check the results"
+
+Observation: OK, looks good!
+
+Thought: I have finished the task successfully and the human approved it.
+Final answer: I have finished the task successfully and the human approved it.
+
+"""
+    }
 ]
