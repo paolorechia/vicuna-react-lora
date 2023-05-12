@@ -16,6 +16,7 @@ from peft import (
     get_peft_model_state_dict,
 )
 from react_data import data
+from code_corrector import data
 import json
 tmp_file = "json_data.json"
 with open(tmp_file, "w") as fp:
