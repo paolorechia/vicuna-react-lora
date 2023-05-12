@@ -26,13 +26,13 @@ from peft import (
 MICRO_BATCH_SIZE = 4  # this could actually be 5 but i like powers of 2
 BATCH_SIZE = 64
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
-EPOCHS = 3  # we don't need 3 tbh
+EPOCHS = 1  # we don't need 3 tbh
 LEARNING_RATE = 3e-4  # the Karpathy constant
-CUTOFF_LEN = 256  # 256 accounts for about 96% of the data
+CUTOFF_LEN = 2048  # 256 accounts for about 96% of the data
 LORA_R = 8
 LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
-VAL_SET_SIZE = 8
+VAL_SET_SIZE = 1000
 
 
 dataset_list = []
@@ -142,11 +142,11 @@ trainer = transformers.Trainer(
         num_train_epochs=EPOCHS,
         learning_rate=LEARNING_RATE,
         fp16=True,
-        logging_steps=20,
+        logging_steps=200,
         evaluation_strategy="steps",
         save_strategy="steps",
-        eval_steps=10,
-        save_steps=10,
+        eval_steps=100,
+        save_steps=100,
         output_dir="lora-wizard",
         save_total_limit=3,
         load_best_model_at_end=True,
